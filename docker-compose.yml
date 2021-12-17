@@ -1,0 +1,47 @@
+version: '3'
+services:
+  party-a-db:
+    image: "postgres" # use latest official postgres version
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=partyA
+    volumes:
+      - partya-database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+  party-b-db:
+    image: "postgres" # use latest official postgres version
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=partyB
+    volumes:
+      - partyb-database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+  party-c-db:
+    image: "postgres" # use latest official postgres version
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=partyC
+    volumes:
+      - partyc-database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+  notary-db:
+    image: "postgres" # use latest official postgres version
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=notary
+    volumes:
+      - notary-database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+volumes:
+  partya-database-data:
+  partyb-database-data:
+  partyc-database-data:
+  notary-database-data:
